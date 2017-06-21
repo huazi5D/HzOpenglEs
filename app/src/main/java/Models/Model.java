@@ -19,6 +19,8 @@ public abstract class Model {
 
     public abstract void draw(float[] matrix);
 
+    public abstract void setup();
+
     protected FloatBuffer convertToFloatBuffer(float[] buffer) {
         FloatBuffer fb = ByteBuffer.allocateDirect(buffer.length * 4)
                 .order(ByteOrder.nativeOrder())

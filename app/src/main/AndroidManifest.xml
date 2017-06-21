@@ -18,7 +18,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="Activitys.SimpleGraphicsActivity"></activity>
+        <activity android:name=".SimpleGraphicsActivity" />
+        <activity android:name=".SimpleGraphicsActivity" />
+        <activity android:name=".GraphicActivity"></activity>
     </application>
 
 </manifest>

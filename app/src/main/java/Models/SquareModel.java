@@ -9,17 +9,20 @@ import java.nio.FloatBuffer;
  * Created by Administrator on 2017-06-20.
  */
 
-public class TriangleModel extends Model {
+public class SquareModel extends Model {
 
-    private float[] coords = {0.0f, 1.0f, -1.0f, -1.0f, 1.0f, -1.0f};
-    private float[] color= { 0.0f, 1f, 0f, 1.0f, 0.0f, 1f, 0f, 1.0f, 0.0f, 1f, 0f, 1.0f};
+    private float[] coords = {-1.0f, 1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -1.0f};
+    private float[] color = { 1.0f, 0.0f, 0.0f, 1.0f,
+                              0.0f, 1.0f, 0.0f, 1.0f,
+                              0.0f, 0.0f, 1.0f, 1.0f,
+                              0.0f, 0.0f, 0.0f, 1.0f };
     private FloatBuffer vertexBuffer;
     private FloatBuffer colorsBuffer;
     private int uColorHandle;
     private int aPositionHandle;
     private int mMVPMatrixHandle;;
 
-    public TriangleModel(Context context) {
+    public SquareModel(Context context) {
         this.mContext = context;
     }
 
@@ -27,7 +30,15 @@ public class TriangleModel extends Model {
     public void draw(float[] matrix) {
         GLES20.glUniformMatrix4fv(mMVPMatrixHandle, 1, false, matrix, 0);
 
-        GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, coords.length / 2);
+        /**
+         * 参数1：有三种取值
+         * 1.GL_TRIANGLES：每三个顶之间绘制三角形，之间不连接
+         * 2.GL_TRIANGLE_FAN：以V0V1V2,V0V2V3,V0V3V4，……的形式绘制三角形
+         * 3.GL_TRIANGLE_STRIP：顺序在每三个顶点之间均绘制三角形。这个方法可以保证从相同的方向上所有三角形均被绘制。以V0V1V2,V1V2V3,V2V3V4……的形式绘制三角形
+         * 参数2：从数组缓存中的哪一位开始绘制，一般都定义为0
+         * 参数3：顶点的数量
+         * */
+        GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 0, coords.length / 2);
     }
 
     @Override

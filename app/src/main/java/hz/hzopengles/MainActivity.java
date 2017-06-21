@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import Activitys.SimpleGraphicsActivity;
-
 public class MainActivity extends Activity implements View.OnClickListener{
 
     private Button mButton_sg;

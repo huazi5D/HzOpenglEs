@@ -10,7 +10,6 @@ import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
 import Models.Model;
-import Models.TriangleModel;
 
 /**
  * Created by Administrator on 2017-06-20.
@@ -19,8 +18,7 @@ import Models.TriangleModel;
 public class MyGlSurfaceView extends GLSurfaceView {
     private static final String TAG = MyGlSurfaceView.class.getSimpleName();
 
-    private Context mContext;
-    private MyRenderer mRenderer;
+    private boolean mIsCompared = false;
     private Model mModel;
     private float mCameraMatrix[], mProjectMatrix[], mMVPMatrix[];
 
@@ -30,14 +28,13 @@ public class MyGlSurfaceView extends GLSurfaceView {
 
     public MyGlSurfaceView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.mContext = context;
         init();
         identityMatrix();
     }
 
     private void init() {
         setEGLContextClientVersion(2);
-        setRenderer(mRenderer = new MyRenderer());
+        setRenderer(new MyRenderer());
     }
 
     private void identityMatrix() {
@@ -50,12 +47,22 @@ public class MyGlSurfaceView extends GLSurfaceView {
         Matrix.setIdentityM(mMVPMatrix, 0);
     }
 
+    public void setModel(Model model) {
+        this.mModel = model;
+        if (mIsCompared) {
+            mModel.setup();
+        }
+    }
+
     public class MyRenderer implements Renderer {
 
         @Override
         public void onSurfaceCreated(GL10 gl, EGLConfig config) {
-            GLES20.glClearColor(1.0f, 0.0f, 0.0f, 0.0f);
-            mModel = new TriangleModel(mContext);
+            mIsCompared = true;
+            GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+            if (mModel != null) {
+                mModel.setup();
+            }
         }
 
         @Override
@@ -71,7 +78,8 @@ public class MyGlSurfaceView extends GLSurfaceView {
         public void onDrawFrame(GL10 gl) {
             GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
 
-            mModel.draw(mMVPMatrix);
+            if (mModel != null)
+                mModel.draw(mMVPMatrix);
         }
     }
 }
