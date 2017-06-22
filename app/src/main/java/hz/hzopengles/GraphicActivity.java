@@ -17,11 +17,7 @@ public class GraphicActivity extends Activity {
 
         type = (ModelFactory.ModelType) getIntent().getExtras().get("type");
         mGlSurfaceView = (MyGlSurfaceView) findViewById(R.id.my_glsurfaceview);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
         mGlSurfaceView.setModel(ModelFactory.getModel(this, type));
     }
+
 }

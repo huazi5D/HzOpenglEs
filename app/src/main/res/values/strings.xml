@@ -3,4 +3,9 @@
     <string name="main_button_sg">基本图形</string>
     <string name="simple_button_sg">三角形</string>
     <string name="simple_button_tg">正方形</string>
+    <string name="simple_button_cr">圆形</string>
+    <string name="simple_button_cb">立方体</string>
+    <string name="simple_button_cn">圆锥体</string>
+    <string name="simple_button_cl">圆柱体</string>
+    <string name="simple_button_sp">球体</string>
 </resources>

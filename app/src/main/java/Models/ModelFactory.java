@@ -9,7 +9,7 @@ import android.content.Context;
 public class ModelFactory {
 
     public enum ModelType {
-        TRIANGLE, SQUARE;
+        TRIANGLE, SQUARE, CIRCLE, CUBE, CONE, CYLINDER, SPHERE;
     }
 
     public static Model getModel(Context context, ModelType modelType) {
@@ -20,6 +20,21 @@ public class ModelFactory {
                 break;
             case SQUARE:
                 model = new SquareModel(context);
+                break;
+            case CIRCLE:
+                model = new CircleModel(context);
+                break;
+            case CUBE:
+                model = new CubeModel(context);
+                break;
+            case CONE:
+                model = new ConeModel(context);
+                break;
+            case CYLINDER:
+                model = new CylinderModel(context);
+                break;
+            case SPHERE:
+                model = new SphereModel(context);
                 break;
         }
 

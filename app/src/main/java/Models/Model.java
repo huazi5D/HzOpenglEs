@@ -5,6 +5,7 @@ import android.content.Context;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
+import java.nio.ShortBuffer;
 
 import Utils.ShaderUtils;
 
@@ -25,6 +26,15 @@ public abstract class Model {
         FloatBuffer fb = ByteBuffer.allocateDirect(buffer.length * 4)
                 .order(ByteOrder.nativeOrder())
                 .asFloatBuffer();
+        fb.put(buffer);
+        fb.position(0);
+        return fb;
+    }
+
+    protected ShortBuffer convertToShortBuffer(short[] buffer) {
+        ShortBuffer fb = ByteBuffer.allocateDirect(buffer.length * 2)
+                .order(ByteOrder.nativeOrder())
+                .asShortBuffer();
         fb.put(buffer);
         fb.position(0);
         return fb;

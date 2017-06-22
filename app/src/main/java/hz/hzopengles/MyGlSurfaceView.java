@@ -59,7 +59,7 @@ public class MyGlSurfaceView extends GLSurfaceView {
         @Override
         public void onSurfaceCreated(GL10 gl, EGLConfig config) {
             mIsCompared = true;
-            GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+            GLES20.glClearColor(1.0f, 0.0f, 0.0f, 0.0f);
             if (mModel != null) {
                 mModel.setup();
             }
@@ -69,14 +69,14 @@ public class MyGlSurfaceView extends GLSurfaceView {
         public void onSurfaceChanged(GL10 gl, int width, int height) {
             GLES20.glViewport(0, 0, width, height);
             float ratio = (float)height/width;
-            Matrix.frustumM(mProjectMatrix,0,-1,1,-ratio,ratio,3,7);// 3和7代表远近视点与眼睛的距离，非坐标点
+            Matrix.frustumM(mProjectMatrix,0,-1,1,-ratio,ratio,1,7);// 3和7代表远近视点与眼睛的距离，非坐标点
             Matrix.setLookAtM(mCameraMatrix, 0, 0, 0, 3, 0f, 0f, 0f, 0f, 1.0f, 0.0f);// 3代表眼睛的坐标点
             Matrix.multiplyMM(mMVPMatrix, 0, mProjectMatrix, 0, mCameraMatrix, 0);
         }
 
         @Override
         public void onDrawFrame(GL10 gl) {
-            GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
+            GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
 
             if (mModel != null)
                 mModel.draw(mMVPMatrix);
