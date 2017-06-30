@@ -20,7 +20,8 @@
         </activity>
         <activity android:name=".SimpleGraphicsActivity" />
         <activity android:name=".SimpleGraphicsActivity" />
-        <activity android:name=".GraphicActivity"></activity>
+        <activity android:name=".GraphicActivity" />
+        <activity android:name=".BitmapActivity"></activity>
     </application>
 
 </manifest>

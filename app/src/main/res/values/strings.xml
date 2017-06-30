@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">HzOpenglEs</string>
     <string name="main_button_sg">基本图形</string>
+    <string name="main_button_bitmap">图像处理</string>
     <string name="simple_button_sg">三角形</string>
     <string name="simple_button_tg">正方形</string>
     <string name="simple_button_cr">圆形</string>
