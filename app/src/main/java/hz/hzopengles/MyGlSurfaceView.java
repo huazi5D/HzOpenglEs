@@ -60,6 +60,8 @@ public class MyGlSurfaceView extends GLSurfaceView {
         public void onSurfaceCreated(GL10 gl, EGLConfig config) {
             mIsCompared = true;
             GLES20.glClearColor(1.0f, 0.0f, 0.0f, 0.0f);
+            //启用深度测试,否则三维图形旋转会有透明
+            GLES20.glEnable(GLES20.GL_DEPTH_TEST);
             if (mModel != null) {
                 mModel.setup();
             }

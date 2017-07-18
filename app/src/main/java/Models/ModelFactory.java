@@ -34,7 +34,7 @@ public class ModelFactory {
                 model = new CylinderModel(context);
                 break;
             case SPHERE:
-                model = new SphereModel(context);
+                model = new SphereTextureModel(context);
                 break;
         }
 
