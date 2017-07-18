@@ -17,7 +17,7 @@ public class CircleModel extends Model {
     private FloatBuffer colorsBuffer;
     private int uColorHandle;
     private int aPositionHandle;
-    private int mMVPMatrixHandle;;
+    private int mMVPMatrixHandle;
 
     public CircleModel(Context context) {
         this.mContext = context;
@@ -43,7 +43,7 @@ public class CircleModel extends Model {
         }
         vertexBuffer = convertToFloatBuffer(coords);
         colorsBuffer = convertToFloatBuffer(color );
-        mProgram = getProgram("vertex.glsl", "fragment.glsl");
+        mProgram = getProgram("Shader/vertex.glsl", "Shader/fragment.glsl");
         GLES20.glUseProgram(mProgram);
 
         uColorHandle        = GLES20.glGetAttribLocation (mProgram, "a_Color");

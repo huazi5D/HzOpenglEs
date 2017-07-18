@@ -17,7 +17,7 @@ public class AssetsUtils {
     public static String read(Context context, String fileName) {
         String result = null;
         try {
-            InputStream is = context.getResources().getAssets().open("Shader/" + fileName);
+            InputStream is = context.getResources().getAssets().open(fileName);
             int length = is.available();
             byte[] buffer = new byte[length];
             is.read(buffer);

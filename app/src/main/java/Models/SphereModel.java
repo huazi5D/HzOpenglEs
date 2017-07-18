@@ -34,7 +34,7 @@ public class SphereModel extends Model {
     public void setup() {
         vertexBuffer = convertToFloatBuffer(coords);
         colorsBuffer = convertToFloatBuffer(color );
-        mProgram = getProgram("vertex.glsl", "fragment.glsl");
+        mProgram = getProgram("Shader/vertex.glsl", "Shader/fragment.glsl");
         GLES20.glUseProgram(mProgram);
 
         uColorHandle        = GLES20.glGetAttribLocation (mProgram, "a_Color");

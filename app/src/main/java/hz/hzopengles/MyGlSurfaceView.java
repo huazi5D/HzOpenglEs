@@ -69,7 +69,7 @@ public class MyGlSurfaceView extends GLSurfaceView {
         public void onSurfaceChanged(GL10 gl, int width, int height) {
             GLES20.glViewport(0, 0, width, height);
             float ratio = (float)height/width;
-            Matrix.orthoM(mProjectMatrix,0,-width/2,width/2,-height/2,height/2,1,7);// 3和7代表远近视点与眼睛的距离，非坐标点
+            Matrix.orthoM(mProjectMatrix, 0, -1, 1, -ratio, ratio, 1, 7);// 3和7代表远近视点与眼睛的距离，非坐标点
             Matrix.setLookAtM(mCameraMatrix, 0, 0, 0, 3, 0f, 0f, 0f, 0f, 1.0f, 0.0f);// 3代表眼睛的坐标点
             Matrix.multiplyMM(mMVPMatrix, 0, mProjectMatrix, 0, mCameraMatrix, 0);
         }

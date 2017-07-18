@@ -2,16 +2,15 @@ package hz.hzopengles;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.annotation.IdRes;
-import android.widget.RadioGroup;
+import android.widget.SeekBar;
 
-import Models.BitmapModel;
+import Filter.BrightnessFilter;
 
-public class BitmapActivity extends Activity implements RadioGroup.OnCheckedChangeListener{
+public class BitmapActivity extends Activity implements SeekBar.OnSeekBarChangeListener{
 
     private MyGlSurfaceView mGlSurfaceView;
-    private RadioGroup mRadioGroup;
-    private BitmapModel mBitmapModel;
+    private BrightnessFilter mBrightnessFilter;
+    private SeekBar mSeekBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,23 +18,24 @@ public class BitmapActivity extends Activity implements RadioGroup.OnCheckedChan
         setContentView(R.layout.activity_bitmap);
 
         mGlSurfaceView = (MyGlSurfaceView) findViewById(R.id.mapview);
-        mRadioGroup = (RadioGroup) findViewById(R.id.audio_group);
 
-        mGlSurfaceView.setModel(mBitmapModel = new BitmapModel(this));
-        mRadioGroup.setOnCheckedChangeListener(this);
+        mGlSurfaceView.setModel(mBrightnessFilter = new BrightnessFilter(this));
+        mSeekBar = (SeekBar) findViewById(R.id.seekBar);
+        mSeekBar.setOnSeekBarChangeListener(this);
     }
 
     @Override
-    public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-        switch (checkedId) {
-            case R.id.radioButton0:
-                mBitmapModel.setBitmapType(0);
-                break;
-            case R.id.radioButton1:
-                mBitmapModel.setBitmapType(1);
-                break;
-            case R.id.radioButton2:
-                break;
-        }
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        mBrightnessFilter.setPercent((float) progress / 50 - 1f);
+    }
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+
+    }
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
+
     }
 }

@@ -55,7 +55,7 @@ public class CubeModel extends Model {
         vertexBuffer = convertToFloatBuffer(coords);
         colorsBuffer = convertToFloatBuffer(color );
         indexBuffer  = convertToShortBuffer(index );
-        mProgram = getProgram("vertex.glsl", "fragment.glsl");
+        mProgram = getProgram("Shader/vertex.glsl", "Shader/fragment.glsl");
         GLES20.glUseProgram(mProgram);
 
         uColorHandle        = GLES20.glGetAttribLocation (mProgram, "a_Color");
