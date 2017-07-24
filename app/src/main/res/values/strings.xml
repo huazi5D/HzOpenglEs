@@ -9,4 +9,9 @@
     <string name="simple_button_cn">圆锥体</string>
     <string name="simple_button_cl">圆柱体</string>
     <string name="simple_button_sp">球体</string>
+
+    <string-array name="spinner">
+        <item>亮度</item>
+        <item>普通混合</item>
+    </string-array>
 </resources>

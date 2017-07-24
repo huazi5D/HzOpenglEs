@@ -22,6 +22,7 @@ public class BrightnessFilter extends Model{
     private int aPositionHandle;
     private int mMVPMatrixHandle;
     private int mTextureHandle;
+    private int mTexture2Handle;
     private int mBitmapTypeHandle;
     private float mPercent = 0;
 
@@ -51,7 +52,7 @@ public class BrightnessFilter extends Model{
 
         GLES20.glVertexAttribPointer(uColorHandle   , 2, GLES20.GL_FLOAT, false, 0, colorsBuffer);
         GLES20.glVertexAttribPointer(aPositionHandle, 2, GLES20.GL_FLOAT, false, 0, vertexBuffer);
-        GLES20.glUniform1i(mTextureHandle, 0);
+        GLES20.glUniform1i(mTextureHandle, 0);//GL_TEXTURE0
         GLES20.glUniform1f(mBitmapTypeHandle, 1);
 
         createTexture(AssetsUtils.getBitmap(mContext, "png/maomi.png"));
@@ -63,4 +64,12 @@ public class BrightnessFilter extends Model{
     public void setPercent(float percent) {
         this.mPercent = percent;
     }
+
+    public void blendRegist() {
+        mTexture2Handle     = GLES20.glGetUniformLocation(mProgram, "a_Texture");
+        GLES20.glUniform1i(mTextureHandle, 1);//GL_TEXTURE1
+        createTexture(AssetsUtils.getBitmap(mContext, "png/maomi.png"));
+
+    }
+
 }
