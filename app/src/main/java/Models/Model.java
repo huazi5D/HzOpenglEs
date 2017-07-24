@@ -48,8 +48,13 @@ public abstract class Model {
     }
 
     protected int createTexture(Bitmap bitmap){
+        return createTexture(bitmap, 0);
+    }
+
+    protected int createTexture(Bitmap bitmap, int texture_i){
         int[] texture=new int[1];
         if(bitmap!=null&&!bitmap.isRecycled()){
+            GLES20.glActiveTexture(texture_i);
             //生成纹理
             GLES20.glGenTextures(1,texture,0);
             //生成纹理
@@ -64,6 +69,7 @@ public abstract class Model {
             GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_T,GLES20.GL_CLAMP_TO_EDGE);
             //根据以上指定的参数，生成一个2D纹理
             GLUtils.texImage2D(GLES20.GL_TEXTURE_2D, 0, bitmap, 0);
+            bitmap.recycle();
             return texture[0];
         }
         return 0;

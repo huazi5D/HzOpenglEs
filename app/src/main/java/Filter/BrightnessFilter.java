@@ -48,14 +48,18 @@ public class BrightnessFilter extends Model{
         aPositionHandle     = GLES20.glGetAttribLocation (mProgram, "a_Position");
         mMVPMatrixHandle    = GLES20.glGetUniformLocation(mProgram, "u_Matrix");
         mTextureHandle      = GLES20.glGetUniformLocation(mProgram, "a_Texture");
+        mTexture2Handle     = GLES20.glGetUniformLocation(mProgram, "a_Texture1");
         mBitmapTypeHandle   = GLES20.glGetUniformLocation(mProgram, "percent");
 
         GLES20.glVertexAttribPointer(uColorHandle   , 2, GLES20.GL_FLOAT, false, 0, colorsBuffer);
         GLES20.glVertexAttribPointer(aPositionHandle, 2, GLES20.GL_FLOAT, false, 0, vertexBuffer);
+        createTexture(AssetsUtils.getBitmap(mContext, "png/maomi.png"));
         GLES20.glUniform1i(mTextureHandle, 0);//GL_TEXTURE0
         GLES20.glUniform1f(mBitmapTypeHandle, 1);
 
-        createTexture(AssetsUtils.getBitmap(mContext, "png/maomi.png"));
+
+        GLES20.glUniform1i(mTexture2Handle, 1);//GL_TEXTURE1
+        createTexture(AssetsUtils.getBitmap(mContext, "png/bb.png"), GLES20.GL_TEXTURE1);
 
         GLES20.glEnableVertexAttribArray(uColorHandle);
         GLES20.glEnableVertexAttribArray(aPositionHandle);
@@ -66,9 +70,6 @@ public class BrightnessFilter extends Model{
     }
 
     public void blendRegist() {
-        mTexture2Handle     = GLES20.glGetUniformLocation(mProgram, "a_Texture");
-        GLES20.glUniform1i(mTextureHandle, 1);//GL_TEXTURE1
-        createTexture(AssetsUtils.getBitmap(mContext, "png/maomi.png"));
 
     }
 

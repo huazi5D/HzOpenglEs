@@ -60,7 +60,7 @@ public class BitmapActivity extends Activity implements SeekBar.OnSeekBarChangeL
                 break;
 
             case "普通混合":
-
+                mBrightnessFilter.blendRegist();
                 break;
         }
     }
