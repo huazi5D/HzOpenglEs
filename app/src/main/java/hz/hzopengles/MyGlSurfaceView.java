@@ -54,6 +54,10 @@ public class MyGlSurfaceView extends GLSurfaceView {
         }
     }
 
+    public void doOnEglContext(Runnable r) {
+        queueEvent(r);
+    }
+
     public class MyRenderer implements Renderer {
 
         @Override

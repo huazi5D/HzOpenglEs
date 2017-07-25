@@ -34,8 +34,13 @@ public class BitmapActivity extends Activity implements SeekBar.OnSeekBarChangeL
     /*----------------------------------------------------------------------seekbar----------------------------------------------------------------------------*/
 
     @Override
-    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        mBrightnessFilter.setPercent((float) progress / 50 - 1f);
+    public void onProgressChanged(SeekBar seekBar, final int progress, boolean fromUser) {
+        mGlSurfaceView.doOnEglContext(new Runnable() {
+            @Override
+            public void run() {
+                mBrightnessFilter.setPercent((float) progress / 50 - 1f);
+            }
+        });
     }
 
     @Override
@@ -53,14 +58,25 @@ public class BitmapActivity extends Activity implements SeekBar.OnSeekBarChangeL
     /*----------------------------------------------------------------------spinner----------------------------------------------------------------------------*/
 
     @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+    public void onItemSelected(AdapterView<?> parent, View view, final int position, long id) {
         switch ((String)mSpinner.getSelectedItem()) {
             case "亮度":
-
+                mGlSurfaceView.doOnEglContext(new Runnable() {
+                    @Override
+                    public void run() {
+                        mBrightnessFilter.setType(position);
+                    }
+                });
                 break;
 
             case "普通混合":
-                mBrightnessFilter.blendRegist();
+                mGlSurfaceView.doOnEglContext(new Runnable() {
+                    @Override
+                    public void run() {
+                        mBrightnessFilter.setType(position);
+                        mBrightnessFilter.blendRegist();
+                    }
+                });
                 break;
         }
     }
