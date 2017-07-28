@@ -19,9 +19,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".SimpleGraphicsActivity" />
-        <activity android:name=".SimpleGraphicsActivity" />
         <activity android:name=".GraphicActivity" />
-        <activity android:name=".BitmapActivity"></activity>
+        <activity android:name=".BitmapActivity" />
+        <activity android:name=".FboActivity"></activity>
     </application>
 
 </manifest>

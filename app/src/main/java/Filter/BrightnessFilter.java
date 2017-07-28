@@ -69,7 +69,7 @@ public class BrightnessFilter extends Model{
     public void blendRegist() {
         mShaderHandles.mTexture2Handle     = GLES20.glGetUniformLocation(mProgram, "a_Texture1");
         GLES20.glUniform1i(mShaderHandles.mTexture2Handle, 1);//GL_TEXTURE1
-        createTexture(AssetsUtils.getBitmap(mContext, "png/text.png"), GLES20.GL_TEXTURE1);
+        createTexture(AssetsUtils.getBitmap(mContext, "png/hlqk.png"), GLES20.GL_TEXTURE1);
     }
 
 }

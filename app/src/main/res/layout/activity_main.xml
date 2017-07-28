@@ -19,4 +19,11 @@
         android:layout_below="@+id/main_button_sg"
         android:text="@string/main_button_bitmap"/>
 
+    <Button
+        android:id="@+id/main_button_fbo"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/main_button_bitmap"
+        android:text="@string/main_button_fbo"/>
+
 </RelativeLayout>

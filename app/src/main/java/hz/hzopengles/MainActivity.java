@@ -10,6 +10,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
     private Button mButton_sg;
     private Button mButton_bitmap;
+    private Button mButton_fbo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,9 +19,11 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
         mButton_sg = (Button) findViewById(R.id.main_button_sg);
         mButton_bitmap = (Button) findViewById(R.id.main_button_bitmap);
+        mButton_fbo = (Button) findViewById(R.id.main_button_fbo);
 
         mButton_sg.setOnClickListener(this);
         mButton_bitmap.setOnClickListener(this);
+        mButton_fbo.setOnClickListener(this);
     }
 
     @Override
@@ -31,6 +34,9 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 break;
             case R.id.main_button_bitmap:
                 jumpToActivity(BitmapActivity.class);
+                break;
+            case R.id.main_button_fbo:
+                jumpToActivity(FboActivity.class);
                 break;
         }
     }

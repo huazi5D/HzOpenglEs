@@ -70,6 +70,7 @@ public class BitmapActivity extends Activity implements SeekBar.OnSeekBarChangeL
                 break;
 
             case "普通混合":
+            case "柔光混合":
                 mGlSurfaceView.doOnEglContext(new Runnable() {
                     @Override
                     public void run() {
