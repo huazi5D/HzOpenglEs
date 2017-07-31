@@ -74,6 +74,9 @@ public class FboView extends GLSurfaceView {
         private int mTextureId;
         private int mFBOTextureId;
 
+        private int mScreenWidth = 0;
+        private int mScreenHeight = 0;
+
         private ShaderHandles mShaderHandles = new ShaderHandles();
 
         public FboRender() {
@@ -113,6 +116,8 @@ public class FboView extends GLSurfaceView {
         @Override
         public void onSurfaceChanged(GL10 gl, int width, int height) {
             GLES20.glViewport(0, 0, width, height);
+            mScreenWidth = width;
+            mScreenHeight = height;
 
             float ratio = (float)height/width;
             Matrix.orthoM(mProjectionMatrix, 0, -1, 1, -ratio, ratio, 1, 7);// 3和7代表远近视点与眼睛的距离，非坐标点
@@ -123,8 +128,15 @@ public class FboView extends GLSurfaceView {
         @Override
         public void onDrawFrame(GL10 gl) {
             GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
-//            GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, mTextureId);
-//            GLES20.glUniform1i(mShaderHandles.mTextureHandle, 0);
+            GLES20.glViewport(0, 0, mBitmap.getWidth(), mBitmap.getHeight());
+            bindFBO();
+            GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, mTextureId);
+            GLES20.glUniform1i(mShaderHandles.mTextureHandle, 0);
+            GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 0, mVertexCoordinate.length / 2);
+            unbindFBO();
+            GLES20.glViewport(0, 0, mScreenWidth, mScreenHeight);
+            GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, mFBOTextureId);
+            GLES20.glUniform1i(mShaderHandles.mTextureHandle, 0);
             GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 0, mVertexCoordinate.length / 2);
 
         }
