@@ -4,9 +4,37 @@ uniform float percent;
 uniform sampler2D a_Texture1;
 uniform sampler2D a_Texture;
 varying vec2 v_Coordinate;
+
+mat3 convolutionKernel = mat3(-1.0, -1.0, 0.0,
+                              -1.0, 0.0, 1.0,
+                              0.0, 1.0, 1.0);
+
+float imageWidthFactor = 1.0 / 1080.0;
+float imageHeightFactor = 1.0 / 780.0;
+
 /**/
 void main() {
-    vec4 color = texture2D(a_Texture, v_Coordinate);
+
+    // 锐化
+    vec3 color00 = texture2D(a_Texture1, vec2(v_Coordinate.x - imageWidthFactor, v_Coordinate.y - imageHeightFactor)).rgb;
+    vec3 color01 = texture2D(a_Texture1, vec2(v_Coordinate.x      , v_Coordinate.y - imageHeightFactor)).rgb;
+    vec3 color02 = texture2D(a_Texture1, vec2(v_Coordinate.x + imageWidthFactor, v_Coordinate.y - imageHeightFactor)).rgb;
+
+    vec3 color10 = texture2D(a_Texture1, vec2(v_Coordinate.x - imageWidthFactor, v_Coordinate.y)).rgb;
+    vec3 color11 = texture2D(a_Texture1, vec2(v_Coordinate.x      , v_Coordinate.y)).rgb;
+    //    vec3 color11 = texture2D(a_Texture1, v_Coordinate).rgb;
+    vec3 color12 = texture2D(a_Texture1, vec2(v_Coordinate.x + imageWidthFactor, v_Coordinate.y)).rgb;
+
+    vec3 color20 = texture2D(a_Texture1, vec2(v_Coordinate.x - imageWidthFactor, v_Coordinate.y + imageHeightFactor)).rgb;
+    vec3 color21 = texture2D(a_Texture1, vec2(v_Coordinate.x      , v_Coordinate.y + imageHeightFactor)).rgb;
+    vec3 color22 = texture2D(a_Texture1, vec2(v_Coordinate.x + imageWidthFactor, v_Coordinate.y + imageHeightFactor)).rgb;
+
+    vec3 color = color00 * convolutionKernel[0][0] + color01 * convolutionKernel[0][1] + color02 * convolutionKernel[0][2] +
+    color10 * convolutionKernel[1][0] + color11 * convolutionKernel[1][1] + color12 * convolutionKernel[1][2] +
+    color20 * convolutionKernel[2][0] + color21 * convolutionKernel[2][1] + color22 * convolutionKernel[2][2];
+
+    gl_FragColor = vec4(color, texture2D(a_Texture1, v_Coordinate).a);
+    /*vec4 color = texture2D(a_Texture, v_Coordinate);
     vec4 rgba;
     if (type == 0) {
         vec3 rgb = color.rgb + percent;
@@ -42,5 +70,5 @@ void main() {
         rgba = vec4(ra, ga, ba, 1.0);
     }
 
-    gl_FragColor = rgba;
+    gl_FragColor = rgba;*/
 }

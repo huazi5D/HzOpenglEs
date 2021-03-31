@@ -20,6 +20,7 @@ public class SimpleGraphicsActivity extends Activity implements View.OnClickList
         findViewById(R.id.cone    ).setOnClickListener(this);
         findViewById(R.id.cylinder).setOnClickListener(this);
         findViewById(R.id.sphere  ).setOnClickListener(this);
+        findViewById(R.id.dice    ).setOnClickListener(this);
     }
 
     @Override
@@ -45,6 +46,9 @@ public class SimpleGraphicsActivity extends Activity implements View.OnClickList
                 break;
             case R.id.sphere:
                 nextActivity(ModelFactory.ModelType.SPHERE);
+                break;
+            case R.id.dice:
+                nextActivity(ModelFactory.ModelType.DICE);
                 break;
         }
     }

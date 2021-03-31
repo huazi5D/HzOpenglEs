@@ -131,14 +131,11 @@ public class FboView extends GLSurfaceView {
             GLES20.glViewport(0, 0, mBitmap.getWidth(), mBitmap.getHeight());
             bindFBO();
             GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, mTextureId);
-            GLES20.glUniform1i(mShaderHandles.mTextureHandle, 0);
             GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 0, mVertexCoordinate.length / 2);
             unbindFBO();
             GLES20.glViewport(0, 0, mScreenWidth, mScreenHeight);
             GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, mFBOTextureId);
-            GLES20.glUniform1i(mShaderHandles.mTextureHandle, 0);
             GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 0, mVertexCoordinate.length / 2);
-
         }
 
         public int createTexture(Bitmap bitmap) {

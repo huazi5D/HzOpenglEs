@@ -1,55 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center" >
+    android:gravity="center">
 
     <Button
         android:id="@+id/triangle"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:text="@string/simple_button_sg" />
+        android:layout_marginTop="100dp"
+        android:text="@string/simple_button_sg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/square"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_below="@+id/triangle"
-        android:text="@string/simple_button_tg" />
+        android:text="@string/simple_button_tg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/triangle" />
 
     <Button
         android:id="@+id/circul"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_below="@+id/square"
-        android:text="@string/simple_button_cr" />
+        android:text="@string/simple_button_cr"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/square" />
 
     <Button
         android:id="@+id/cube"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_below="@+id/circul"
-        android:text="@string/simple_button_cb" />
+        android:text="@string/simple_button_cb"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/circul" />
 
     <Button
         android:id="@+id/cone"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_below="@+id/cube"
-        android:text="@string/simple_button_cn" />
+        android:text="@string/simple_button_cn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cube" />
 
     <Button
         android:id="@+id/cylinder"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_below="@+id/cone"
-        android:text="@string/simple_button_cl" />
+        android:text="@string/simple_button_cl"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cone" />
 
     <Button
         android:id="@+id/sphere"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_below="@+id/cylinder"
-        android:text="@string/simple_button_sp" />
+        android:text="@string/simple_button_sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cylinder" />
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/dice"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:text="@string/simple_button_dice"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sphere" />
+
+</android.support.constraint.ConstraintLayout>
